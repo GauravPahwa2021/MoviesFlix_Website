@@ -1,4 +1,5 @@
 import User from '../models/User';
+import bcrypt from 'bcryptjs';
 
 export const getAllUsers = async (req, res, next) => {
     let users;
@@ -23,9 +24,11 @@ export const signUp = async (req, res, next) => {
         res.status(422).json({ message: "Invalid Inputs" });
     }
 
+    const hashedPassword = bcrypt.hashSync(password);
+
     let user;
     try {
-        user = new User({ name, email, password });
+        user = new User({ name, email, password:hashedPassword });
         user = await user.save();
     }
     catch (err) {
