@@ -8,6 +8,7 @@ dotenv.config();
 const app = express();
 
 // middlewares
+app.use(express.json());
 app.use("/user",userRouter);
 
 const port = 5000;
