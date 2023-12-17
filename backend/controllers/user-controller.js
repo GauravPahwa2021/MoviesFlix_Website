@@ -39,7 +39,7 @@ export const signUp = async (req, res, next) => {
         return res.status(500).json({ message: "Unexpected Error Occurred" });
     }
     return res.status(201).json({ user });
-}
+};
 
 export const updateUser = async (req, res, next) => {
     const id = req.params.id;
@@ -62,7 +62,7 @@ export const updateUser = async (req, res, next) => {
         res.status(500).json({ message: "Unexpected Error Occurred" });
     }
     return res.status(200).json({ message: "Updated Successfully" });
-}
+};
 
 export const deleteUser = async (req, res, next) => {
     const id = req.params.id;
@@ -79,7 +79,7 @@ export const deleteUser = async (req, res, next) => {
         res.status(500).json({ message: "Unexpected Error Occurred" });
     }
     return res.status(200).json({ message: "Deleted Successfully" });
-}
+};
 
 export const login = async (req, res, next) => {
     const { email, password } = req.body;
@@ -105,4 +105,4 @@ export const login = async (req, res, next) => {
         return res.status(400).json({ message: "Invalid Password" });
     }
     return res.status(200).json({ message: "Login Successful" });
-}
+};
