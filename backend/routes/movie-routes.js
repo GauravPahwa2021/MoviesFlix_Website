@@ -1,8 +1,8 @@
 import express from 'express';
-import {} from '../controllers/movie-controller';
+import { addMovie } from '../controllers/movie-controller';
 
 const movieRouter = express.Router();
 
-movieRouter.post("",);
+movieRouter.post("/", addMovie);
 
-export default movieRouter;
+export default movieRouter; 
