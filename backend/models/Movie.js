@@ -18,6 +18,10 @@ const movieSchema = new Schema({
         type: String,
         required: true,
     },
+    actors: [{
+        type: String,
+        required: true,
+    }],
     featured: {
         type: Boolean,
     },
