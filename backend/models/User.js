@@ -6,7 +6,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    email : {
+    email: {
         type: String,
         required: true,
         unique: true,
@@ -16,6 +16,12 @@ const userSchema = new Schema({
         required: true,
         minLength: 6,
     },
+    bookings: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: "Booking",
+        }
+    ]
 });
 
-export default mongoose.model("User",userSchema);
+export default mongoose.model("User", userSchema);
