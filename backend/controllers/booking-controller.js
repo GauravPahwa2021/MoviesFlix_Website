@@ -67,7 +67,15 @@ export const deleteBooking = async (req, res, next) => {
     let booking;
 
     try {
-        
+        booking = await Booking.findByIdAndDelete(id).populate("user movie");
+        console.log(booking);
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        await booking.user.bookings.pull(booking);
+        await booking.movie.bookings.pull(booking);
+        await booking.user.save({ session });
+        await booking.movie.save({ session });
+        session.commitTransaction();
     }
     catch (err) {
         return console.log(err);
