@@ -1,4 +1,5 @@
 import User from '../models/User';
+import Booking from '../models/Booking';
 import bcrypt from 'bcryptjs';
 
 export const getAllUsers = async (req, res, next) => {
@@ -105,4 +106,21 @@ export const login = async (req, res, next) => {
         return res.status(400).json({ message: "Invalid Password" });
     }
     return res.status(200).json({ message: "Login Successful" });
+};
+
+export const getBookingByID = async (req, res, next) => {
+    const id = req.params.id;
+    let bookings;
+
+    try {
+        bookings = await Booking.find({ user: id });
+    }
+    catch (err) {
+        return console.log(err);
+    }
+
+    if (!bookings) {
+        return res.status(500).json({ message: "Unable to get booking" });
+    }
+    return res.status(200).json({ bookings });
 };
